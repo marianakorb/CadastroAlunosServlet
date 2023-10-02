@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" version="6.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="5.0">
   <servlet>
     <description></description>
-    <display-name>AlterarServlet</display-name>
-    <servlet-name>AlterarServlet</servlet-name>
-    <servlet-class>com.jp.senac.controller.AlterarServlet</servlet-class>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.jp.senac.controller.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AlterarServlet</servlet-name>
-    <url-pattern>/AlterarServlet</url-pattern>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
   <display-name>CadastroAlunosServlet</display-name>
   <welcome-file-list>
@@ -21,23 +21,13 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>ConfirmarAlteracaoServlet</display-name>
-    <servlet-name>ConfirmarAlteracaoServlet</servlet-name>
-    <servlet-class>com.jp.senac.controller.ConfirmarAlteracaoServlet</servlet-class>
+    <display-name>AlterarServlet</display-name>
+    <servlet-name>AlterarServlet</servlet-name>
+    <servlet-class>com.jp.senac.controller.AlterarServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ConfirmarAlteracaoServlet</servlet-name>
-    <url-pattern>/ConfirmarAlteracaoServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ConfirmarCadastroServlet</display-name>
-    <servlet-name>ConfirmarCadastroServlet</servlet-name>
-    <servlet-class>com.jp.senac.controller.ConfirmarCadastroServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ConfirmarCadastroServlet</servlet-name>
-    <url-pattern>/ConfirmarCadastroServlet</url-pattern>
+    <servlet-name>AlterarServlet</servlet-name>
+    <url-pattern>/AlterarServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -61,22 +51,22 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>LoginServlet</display-name>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.jp.senac.controller.LoginServlet</servlet-class>
+    <display-name>ConfirmarCadastroServlet</display-name>
+    <servlet-name>ConfirmarCadastroServlet</servlet-name>
+    <servlet-class>com.jp.senac.controller.ConfirmarCadastroServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/LoginServlet</url-pattern>
+    <servlet-name>ConfirmarCadastroServlet</servlet-name>
+    <url-pattern>/ConfirmarCadastroServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AlunoJDBCdao</display-name>
-    <servlet-name>AlunoJDBCdao</servlet-name>
-    <servlet-class>com.jp.senac.dao.AlunoJDBCdao</servlet-class>
+    <display-name>ConfirmarAlteracaoServlet</display-name>
+    <servlet-name>ConfirmarAlteracaoServlet</servlet-name>
+    <servlet-class>com.jp.senac.controller.ConfirmarAlteracaoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AlunoJDBCdao</servlet-name>
-    <url-pattern>/AlunoJDBCdao</url-pattern>
+    <servlet-name>ConfirmarAlteracaoServlet</servlet-name>
+    <url-pattern>/ConfirmarAlteracaoServlet</url-pattern>
   </servlet-mapping>
 </web-app>

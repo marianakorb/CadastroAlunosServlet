@@ -16,13 +16,13 @@ public class ConfirmarAlteracaoServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		// recuperando os valores informados
+		int id = Integer.parseInt(request.getParameter("id"));
+		String matricula = request.getParameter("matricula");
 		String nome = request.getParameter("nome");
 		String idade = request.getParameter("idade");
 		String semestre = request.getParameter("semestre");
-		String genero = request.getParameter("genero");
-		String nomeAntigo = request.getParameter("nomemNatigo");
+		String genero = request.getParameter("genero");		
 		
 		// Recuperando a sessão
 		HttpSession session = request.getSession();
@@ -31,7 +31,9 @@ public class ConfirmarAlteracaoServlet extends HttpServlet {
 		List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");
 				
 		for(Aluno aluno : listaAlunos) {
-			if(aluno.getNome().toString().equals(nomeAntigo)) {
+			if(aluno.getId() == id) {
+				aluno.setId(id);
+				aluno.setMatricula(matricula);
 				aluno.setNome(nome);
 				aluno.setIdade(idade);
 				aluno.setSemestre(semestre);

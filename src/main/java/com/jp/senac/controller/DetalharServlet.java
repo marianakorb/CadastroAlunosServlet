@@ -16,7 +16,7 @@ public class DetalharServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nome = request.getParameter("nome");
+		int id = Integer.parseInt(request.getParameter("id"));
 		
 		// pegando a lista da sessão
 		HttpSession session = request.getSession();
@@ -27,12 +27,11 @@ public class DetalharServlet extends HttpServlet {
 		Aluno aluno = null;
 		
 		for (Aluno a : listaAlunos) {
-			if(a.getNome().toString().equals(nome)) {
+			if(a.getId() == id) {
 				aluno = a;
 			}
 		}
 		
-
 		request.setAttribute("aluno", aluno);
 		request.getRequestDispatcher("detalharAluno.jsp").forward(request, response);
 		

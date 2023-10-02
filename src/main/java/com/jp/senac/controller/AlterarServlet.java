@@ -13,29 +13,30 @@ import jakarta.servlet.http.HttpSession;
 
 public class AlterarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nome = request.getParameter("nome");
+		int id = Integer.parseInt(request.getParameter("id"));
 		
-		// Recuperar a minha sessão
+		//recuperar a minha sessão
+		
 		HttpSession session = request.getSession();
+		
 		List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");
 		
-			
-		// Recuperando o aluno que tem o nome informado (e que deve ser alterado)
+		//recuperando o aluno que tem o nome informado (e que deve ser alterado)
 		Aluno aluno = null;
 		for (Aluno a : listaAlunos) {
-			if (a.getNome().toString().equals(nome)) {
+			if(a.getId() == id)  {
 				aluno = a;
 			}
+			
 		}
 		
 		request.setAttribute("aluno", aluno);
 		request.getRequestDispatcher("alterarAluno.jsp").forward(request, response);
-		
 	}
 
-
+	
 
 }

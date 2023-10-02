@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
-<%@ page import="com.jp.senac.model.Aluno" %>
+    <%@ page import="com.jp.senac.model.Aluno" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,29 +9,16 @@
 </head>
 <body>
 
-<% Aluno aluno = (Aluno) request.getAttribute("aluno");%>
+<%Aluno aluno = (Aluno) request.getAttribute("aluno");%>
+<h1>Aluno Cadastrado</h1>
+<p>Matricula: <%=aluno.getMatricula() %>
+<p>Nome: <%=aluno.getNome() %></p>
+<p>Idade: <%=aluno.getIdade() %></p>
+<p>Genero: <%=aluno.getGenero() %></p>
+<p>Semestre: <%=aluno.getSemestre() %></p>
+<br>
 
-<h2> Aluno Cadastrado</h2>
-
-Nome: <%=aluno.getNome()%>
-<br><br>
-
-Idade: <%=aluno.getIdade()%>
-<br><br>
-
-Genero: <%=aluno.getGenero()%>
-<br><br>
-
-Semestre: <%=aluno.getSemestre()%>
-<br><br>
-
-<input type="button" onclick="javascript:location.href='listarAlunos.jsp'"  value="Confirmar"> 
-<a href="AlterarServlet?nome=<%=aluno.getNome()%>">Alterar</a>
-
-
-
-
-
-
+<input type="button" onclick="javascript:location.href='listarAlunos.jsp'" value="Confirmar">
+<a href="AlterarServlet?id=<%=aluno.getId()%>">Alterar</a>
 </body>
 </html>
