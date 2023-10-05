@@ -15,13 +15,22 @@ public class Aluno {
 		
 	}
 	
-	public Aluno(int id, String nome, String idade, String semestre, String genero, String matricula) {
+	public Aluno(Integer id, String nome, String idade, String semestre, String genero, String matricula) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
 		this.semestre = semestre;
 		this.genero = genero;
 		this.id = id;
+		this.matricula = matricula;
+	}
+	
+	public Aluno(String nome, String idade, String semestre, String genero, String matricula) {
+		super();
+		this.nome = nome;
+		this.idade = idade;
+		this.semestre = semestre;
+		this.genero = genero;
 		this.matricula = matricula;
 	}
 	

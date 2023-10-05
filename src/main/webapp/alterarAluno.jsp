@@ -8,7 +8,12 @@
 <title>Alterar Aluno</title>
 </head>
 <body>
-<%Aluno aluno = (Aluno) request.getAttribute("aluno"); %>
+<%Aluno aluno = (Aluno) request.getAttribute("aluno"); %> 
+
+<% if (aluno == null ) {
+		response.sendRedirect("index.jsp");%>
+
+<% } %>
 <h1>Alterar Aluno </h1>
 
 <form action="ConfirmarAlteracaoServlet" method="post">

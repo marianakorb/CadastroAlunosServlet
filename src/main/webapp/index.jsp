@@ -8,16 +8,18 @@
 </head>
 <body>
 
+
+
 <h1>Sistema Cadastro de Alunos</h1>
 
 <h2>Informe seu usuário e senha</h2>
 <form action="LoginServlet" method="post">
 	<label for="usuario">Login: </label>
 	<input type="text" name="usuario" required>
-	<br>
+	<br><br>
 	<label for="senha">Senha: </label>
 	<input type="password" name="senha" required>
-	<br>
+	<br><br>
 	<input type="submit" value="Efetuar Login">
 	<br>
 	

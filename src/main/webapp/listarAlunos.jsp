@@ -9,12 +9,21 @@
 </head>
 <body>
 
-<%String usuario = (String) session.getAttribute("usuario"); 
-out.print("bem-vindo, " + usuario+ "<br>");%>
+<%String usuario = (String) session.getAttribute("usuario"); %>
+
+<%if(usuario == null) {
+	response.sendRedirect("index.jsp");
+	
+	%>
+<%} else {
+
+	out.print("bem-vindo, " + usuario+ "<br>");%>
+<%}%>
+
 
 <span>Clique <a href="cadastrarAluno.jsp">aqui </a>para cadastrar um novo aluno</span>
 
-<%List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos"); %>
+<%List<Aluno> listaAlunos = (List<Aluno>) request.getAttribute("listaAlunos"); %>
 
 <% if(listaAlunos == null) {%>
 	<h3>Nenhum aluno cadastrado</h3>
@@ -44,7 +53,10 @@ out.print("bem-vindo, " + usuario+ "<br>");%>
 		</tr>
 		<% } %>
 	</table>
+	<br><br>
 <% } %>
+	
+	<a href="LogoutServlet">Logout</a>
 
 </body>
 </html>

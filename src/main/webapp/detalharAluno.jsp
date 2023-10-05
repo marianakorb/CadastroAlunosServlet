@@ -10,6 +10,10 @@
 <body>
 
 <%Aluno aluno = (Aluno) request.getAttribute("aluno");%>
+
+<% if (aluno == null ) {
+	response.sendRedirect("index.jsp");
+} %>
 <h1>Aluno Cadastrado</h1>
 <p>Matricula: <%=aluno.getMatricula() %>
 <p>Nome: <%=aluno.getNome() %></p>
