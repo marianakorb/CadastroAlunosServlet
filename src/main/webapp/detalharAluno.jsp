@@ -15,14 +15,14 @@
 	response.sendRedirect("index.jsp");
 } %>
 <h1>Aluno Cadastrado</h1>
-<p>Matricula: <%=aluno.getMatricula() %>
 <p>Nome: <%=aluno.getNome() %></p>
+<p>Matricula: <%=aluno.getMatricula() %></p>
 <p>Idade: <%=aluno.getIdade() %></p>
 <p>Genero: <%=aluno.getGenero() %></p>
 <p>Semestre: <%=aluno.getSemestre() %></p>
 <br>
 
-<input type="button" onclick="javascript:location.href='listarAlunos.jsp'" value="Confirmar">
+<input type="button" onclick="javascript:location.href='ListarServlet'" value="Confirmar">
 <a href="AlterarServlet?id=<%=aluno.getId()%>">Alterar</a>
 </body>
 </html>

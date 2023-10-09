@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,4 +72,117 @@ public class AlunoJDBCdao {
 		
 		return alunos;
 	}
+	
+	
+	public Aluno pesquisarPorID(Integer id) throws SQLException  {
+		
+		String query = "SELECT * FROM alunos WHERE id = ?";
+		Aluno aluno = null;
+		try {
+			Connection con = getConexao();
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1,  id);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				
+				String nome = rs.getString(2);
+				String idade = rs.getString(3);
+				String semestre = rs.getString(4);
+				String genero = rs.getString(5);
+				String matricula = rs.getString(6);
+				aluno = new Aluno(id,nome,idade,semestre,genero,matricula);
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		
+		}
+		 return aluno;
+	}
+	
+	
+	public void excluirAluno(Integer id) throws SQLException {
+		
+		String delete = "DELETE from alunos WHERE (id = ?)";
+		
+		try {
+			Connection con = getConexao();
+			PreparedStatement pst = con.prepareStatement(delete);
+			pst.setInt(1,  id);
+			pst.executeUpdate();
+			pst.close(); 
+			con.close();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	public Aluno cadastrarAluno (Aluno aluno) {
+		
+		List<Aluno> alunos = new ArrayList<>();
+		String query = "INSERT INTO alunos (nome, idade,semestre,genero,matricula) VALUES(?,?,?,?,?)";
+
+		try {
+			
+			Connection con = getConexao();
+			PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			
+			pst.setString(1, aluno.getNome());
+			pst.setString(2, aluno.getIdade());
+			pst.setString(3, aluno.getSemestre());
+			pst.setString(4, aluno.getGenero());
+			pst.setString(5, aluno.getMatricula());
+			
+			pst.executeUpdate();
+			ResultSet rs = pst.getGeneratedKeys();
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				aluno.setId(id);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return aluno;
+	}
+	
+	
+	
+	public Aluno alterarAluno(Aluno aluno) {
+		 String query = "UPDATE aluno\r\n"
+		 		+ "SET nome = ?, idade= ?, semestre = ?, genero = ?, matricula = ?\r\n"
+		 		+ "WHERE id =" + aluno.getId();
+		
+		 try {
+				Connection con = getConexao();
+				PreparedStatement pst = con.prepareStatement(query);
+				pst.setString(1, aluno.getNome());
+				pst.setString(2, aluno.getIdade());
+				pst.setString(3, aluno.getSemestre());
+				pst.setString(4, aluno.getGenero());
+				pst.setString(5, aluno.getMatricula());
+				
+				pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 
+		return aluno;
+	}
+	
+	
+	
+	public List<Aluno> pesquisa(String valor, String operacao) {
+		
+		return null;
+	}
 }
+
+
+

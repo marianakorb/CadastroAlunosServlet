@@ -3,6 +3,7 @@ package com.jp.senac.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.jp.senac.dao.AlunoJDBCdao;
 import com.jp.senac.model.Aluno;
 
 import jakarta.servlet.ServletException;
@@ -24,25 +25,31 @@ public class ConfirmarAlteracaoServlet extends HttpServlet {
 		String semestre = request.getParameter("semestre");
 		String genero = request.getParameter("genero");		
 		
+		Aluno aluno = new Aluno(id, nome, idade, semestre, genero, matricula);
+		AlunoJDBCdao dao = new AlunoJDBCdao();
+		Aluno alunoCadastrado = dao.alterarAluno(aluno);
+		
+		request.setAttribute("listaAlunos", alunoCadastrado);
+		
+		request.getRequestDispatcher("listarAlunos.jsp").forward(request, response);
+		
 		// Recuperando a sessão
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		
 		// recuperando a lista da sessão, caso não exista, cria
-		List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");
+		//List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");
 				
-		for(Aluno aluno : listaAlunos) {
-			if(aluno.getId() == id) {
-				aluno.setId(id);
-				aluno.setMatricula(matricula);
-				aluno.setNome(nome);
-				aluno.setIdade(idade);
-				aluno.setSemestre(semestre);
-				aluno.setGenero(genero);
-			}
-		}
+//		for(Aluno aluno : listaAlunos) {
+//			if(aluno.getId() == id) {
+//				aluno.setId(id);
+//				aluno.setMatricula(matricula);
+//				aluno.setNome(nome);
+//				aluno.setIdade(idade);
+//				aluno.setSemestre(semestre);
+//				aluno.setGenero(genero);
+//			}
+//		}
 		
-		session.setAttribute("listaAlunos", listaAlunos);
-		request.getRequestDispatcher("listarAlunos.jsp").forward(request, response);
 	}
 
 }
