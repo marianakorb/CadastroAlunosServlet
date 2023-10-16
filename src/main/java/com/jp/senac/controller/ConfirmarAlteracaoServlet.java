@@ -28,27 +28,14 @@ public class ConfirmarAlteracaoServlet extends HttpServlet {
 		Aluno aluno = new Aluno(id, nome, idade, semestre, genero, matricula);
 		AlunoJDBCdao dao = new AlunoJDBCdao();
 		Aluno alunoCadastrado = dao.alterarAluno(aluno);
+		System.out.println(alunoCadastrado);
 		
-		request.setAttribute("listaAlunos", alunoCadastrado);
+		//dao.alterarAluno(aluno);
 		
-		request.getRequestDispatcher("listarAlunos.jsp").forward(request, response);
+		//request.setAttribute("listaAlunos", alunoCadastrado);
 		
-		// Recuperando a sessão
-		//HttpSession session = request.getSession();
+		request.getRequestDispatcher("ListarServlet").forward(request, response);
 		
-		// recuperando a lista da sessão, caso não exista, cria
-		//List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");
-				
-//		for(Aluno aluno : listaAlunos) {
-//			if(aluno.getId() == id) {
-//				aluno.setId(id);
-//				aluno.setMatricula(matricula);
-//				aluno.setNome(nome);
-//				aluno.setIdade(idade);
-//				aluno.setSemestre(semestre);
-//				aluno.setGenero(genero);
-//			}
-//		}
 		
 	}
 

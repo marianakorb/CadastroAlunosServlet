@@ -89,4 +89,14 @@
     <servlet-name>ListarServlet</servlet-name>
     <url-pattern>/ListarServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PesquisaServlet</display-name>
+    <servlet-name>PesquisaServlet</servlet-name>
+    <servlet-class>com.jp.senac.controller.PesquisaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PesquisaServlet</servlet-name>
+    <url-pattern>/PesquisaServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

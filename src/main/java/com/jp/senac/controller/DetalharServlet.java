@@ -24,6 +24,7 @@ public class DetalharServlet extends HttpServlet {
 		
 		try {
 			Aluno aluno = dao.pesquisarPorID(id);
+			System.out.println(aluno);
 			request.setAttribute("aluno", aluno);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jp.senac.model.Aluno;
+import com.mysql.cj.protocol.Resultset;
 
 public class AlunoJDBCdao {
 	
@@ -155,9 +156,7 @@ public class AlunoJDBCdao {
 	
 	
 	public Aluno alterarAluno(Aluno aluno) {
-		 String query = "UPDATE aluno\r\n"
-		 		+ "SET nome = ?, idade= ?, semestre = ?, genero = ?, matricula = ?\r\n"
-		 		+ "WHERE id =" + aluno.getId();
+		 String query = "UPDATE alunos SET nome = ?, idade= ?, semestre = ?, genero = ?, matricula = ? WHERE id = ?";
 		
 		 try {
 				Connection con = getConexao();
@@ -167,6 +166,7 @@ public class AlunoJDBCdao {
 				pst.setString(3, aluno.getSemestre());
 				pst.setString(4, aluno.getGenero());
 				pst.setString(5, aluno.getMatricula());
+				pst.setInt(6, aluno.getId());
 				
 				pst.executeUpdate();
 		} catch (Exception e) {
@@ -177,8 +177,31 @@ public class AlunoJDBCdao {
 	}
 	
 	
-	
-	public List<Aluno> pesquisa(String valor, String operacao) {
+	public 	ArrayList<Aluno> pesquisar(String valor, String tipo) {
+		
+		ArrayList<Aluno> alunos = new ArrayList<>();
+		
+		String query;
+		
+		if(tipo.equals("matricula")) {
+			query = "SELECT * FROM alunos WHERE Matricula = " + valor;
+		} else {
+			query = "SELECT * FROM alunos WHERE nome LIKE '% " + valor + "%'";
+		}
+		
+		try {
+			Connection con = getConexao();
+			PreparedStatement pst = con.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();	
+			
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				
+			}
+			
+		} catch (Exception e) {
+			
+		}
 		
 		return null;
 	}

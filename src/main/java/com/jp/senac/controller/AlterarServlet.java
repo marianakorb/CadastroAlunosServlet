@@ -1,8 +1,10 @@
 package com.jp.senac.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
+import com.jp.senac.dao.AlunoJDBCdao;
 import com.jp.senac.model.Aluno;
 
 import jakarta.servlet.ServletException;
@@ -18,22 +20,16 @@ public class AlterarServlet extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		//recuperar a minha sessão
+		AlunoJDBCdao dao = new AlunoJDBCdao();
 		
-		HttpSession session = request.getSession();
-		
-		List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");
-		
-		//recuperando o aluno que tem o nome informado (e que deve ser alterado)
-		Aluno aluno = null;
-		for (Aluno a : listaAlunos) {
-			if(a.getId() == id)  {
-				aluno = a;
-			}
-			
+		try {
+			Aluno aluno = dao.pesquisarPorID(id);
+			System.out.println(aluno);
+			request.setAttribute("aluno", aluno);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
-		request.setAttribute("aluno", aluno);
 		request.getRequestDispatcher("alterarAluno.jsp").forward(request, response);
 	}
 

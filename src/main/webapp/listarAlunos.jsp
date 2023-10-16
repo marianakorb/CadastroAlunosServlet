@@ -29,6 +29,15 @@
 	<h3>Nenhum aluno cadastrado</h3>
 <% } else { %>
 	<h2>Alunos cadastrados</h2>
+	<form action="PesquisaServlet" method="post">
+		<select name="tipoPesquisa"> 
+			<option value="nome">Nome</option>
+			<option value="matricula">Matricula</option>
+		
+		</select>
+		<input type="text" name="valor">
+		<input type="submit" value="Pesquisar">
+	</form>
 	<table border="1">
 	
 		<tr>
